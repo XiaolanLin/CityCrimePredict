@@ -1,6 +1,9 @@
+# IntelliJ settings
 .idea/*
-CityCrimePredict.iml
+*.iml
+
+# Building outputs
 target/*
-
-
+*.class
+*.jar
 
