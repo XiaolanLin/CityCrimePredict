@@ -9,7 +9,7 @@ from utils import get_env_value
 def upload_jar(jar_path):
     """
     Upload runnable jar file to S3
-    The jar will be uploaded to directory 'BUCKET/project/jar'
+    The jar will be uploaded to directory 'BUCKET/project/jars'
     """
 
     region = get_env_value('REGION', 'us-east-1')
@@ -23,7 +23,7 @@ def upload_jar(jar_path):
                         aws_secret_access_key=secret_key)
     # Upload a new file
     jar = open(jar_path, 'rb')
-    key = os.path.join('project/jar', os.path.basename(jar.name))
+    key = os.path.join('project/jars', os.path.basename(jar.name))
     print('Uploading %s to s3://%s/%s' % (jar.name, bucket_name, key))
     s3.Bucket(bucket_name).put_object(Key=key, Body=jar)
 

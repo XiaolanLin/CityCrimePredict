@@ -1,4 +1,4 @@
-Deployment Scripts
+Provisioning Scripts
 ===
 
 ## Virtual Environment for Running Scripts
@@ -35,12 +35,15 @@ export EC2_KEYNAME='key'
 ```
 
 ### Upload Runnable JAR to S3
+Upload your runnable jar to the directory `BUCKET/project/jars`.
 
 ```Shell
 python provisioning/deploy/s3.py JAR_PATH
 ```
 
 ### Launch AWS EMR
+You may have to modify EMR cluster configuration and implement `main` function in `emr.py`.
+
 ```Shell
 python provisioning/deploy/emr.py
 ```

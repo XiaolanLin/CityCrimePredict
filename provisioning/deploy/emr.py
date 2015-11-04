@@ -26,43 +26,45 @@ def create_job(job_name,
                        aws_access_key_id=access_key,
                        aws_secret_access_key=secret_key)
 
-    emr.run_job_flow(
-        Name=job_name,
-        LogUri=log_uri,
-        ReleaseLabel='emr-4.1.0',
-        Instances={
-            'InstanceGroups': [
-                {
-                    'Name': 'Master',
-                    'Market': 'ON_DEMAND',
-                    'InstanceRole': 'MASTER',
-                    'InstanceType': master_type,
-                    'InstanceCount': 1,
-                }, {
-                    'Name': 'Worker',
-                    'Market': 'ON_DEMAND',
-                    'InstanceRole': 'CORE',
-                    'InstanceType': slave_type,
-                    'InstanceCount': num_instances - 1,
-                }
-            ],
-            'Ec2KeyName': ec2_key,
-            'Placement': {
-                'AvailabilityZone': zone
-            },
-            'KeepJobFlowAliveWhenNoSteps': False,
-            'TerminationProtected': True,
-            'HadoopVersion': '2.6.0',
-        },
-        Steps=steps,
-        VisibleToAllUsers=True,
-        JobFlowRole='EMR_EC2_DefaultRole',
-        ServiceRole='EMR_DefaultRole')
+    emr.run_job_flow(Name=job_name,
+                     LogUri=log_uri,
+                     ReleaseLabel='emr-4.1.0',
+                     Instances={
+                         'InstanceGroups': [
+                             {
+                                 'Name': 'Master',
+                                 'Market': 'ON_DEMAND',
+                                 'InstanceRole': 'MASTER',
+                                 'InstanceType': master_type,
+                                 'InstanceCount': 1,
+                             }, {
+                                 'Name': 'Worker',
+                                 'Market': 'ON_DEMAND',
+                                 'InstanceRole': 'CORE',
+                                 'InstanceType': slave_type,
+                                 'InstanceCount': num_instances - 1,
+                             }
+                         ],
+                         'Ec2KeyName': ec2_key,
+                         'Placement': {
+                             'AvailabilityZone': zone
+                         },
+                         'KeepJobFlowAliveWhenNoSteps': False,
+                         'TerminationProtected': True,
+                         'HadoopVersion': '2.6.0',
+                     },
+                     Steps=steps,
+                     VisibleToAllUsers=True,
+                     JobFlowRole='EMR_EC2_DefaultRole',
+                     ServiceRole='EMR_DefaultRole')
 
 
 def create_custom_jar_step(step_name, jar_name, args=[], bucket_name=None):
+    """
+    Create custom jar step for EMR cluster
+    """
     bucket_name = bucket_name or get_env_value('BUCKET')
-    jar = 's3://%s/project/jar/%s' % (bucket_name, jar_name)
+    jar = 's3://%s/project/jars/%s' % (bucket_name, jar_name)
     step = {
         'Name': step_name,
         'ActionOnFailure': 'TERMINATE_JOB_FLOW',
@@ -74,5 +76,12 @@ def create_custom_jar_step(step_name, jar_name, args=[], bucket_name=None):
     }
     return step
 
+
+def main():
+    # Implement main function by adding custom jar steps
+    step1 = create_custom_jar_step('TEST', 'test.jar')
+    create_custom_jar_step('EMRTEST', steps=[step1, ])
+
+
 if __name__ == '__main__':
-    pass
+    main()
