@@ -48,7 +48,7 @@
                </descriptorRefs>
                <archive>
                   <manifest>
-                     <mainClass>main.java.WordCount.WordCount</mainClass>
+                     <mainClass>main.java.analysis.Main</mainClass>
                   </manifest>
                </archive>
             </configuration>
