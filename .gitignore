@@ -7,3 +7,7 @@ target/*
 *.class
 *.jar
 
+# Eclipse settings
+.classpath
+.project
+.settings/
