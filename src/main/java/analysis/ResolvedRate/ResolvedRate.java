@@ -14,7 +14,7 @@ public class ResolvedRate {
 	    job.setJarByClass(ResolvedRate.class);
 	    job.setMapperClass(ResolvedRateMapper.class); 
 	    job.setReducerClass(ResolvedRateReducer.class);
-	    //job.setNumReduceTasks(10);
+	    job.setNumReduceTasks(10);
 	    job.setPartitionerClass(PdDistrictPartitioner.class);
 	    job.setOutputKeyClass(Text.class);
 	    job.setOutputValueClass(Text.class);
