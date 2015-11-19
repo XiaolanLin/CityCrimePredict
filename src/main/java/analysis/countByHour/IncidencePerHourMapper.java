@@ -14,9 +14,8 @@ import java.io.IOException;
  */
 public class IncidencePerHourMapper extends Mapper<LongWritable, Text, IntWritable, LongWritable> {
 
-    private CSVParser parser;
-
     private final LongWritable one = new LongWritable(1);
+    private CSVParser parser;
 
     @Override
     protected void setup(Context context) throws IOException, InterruptedException {

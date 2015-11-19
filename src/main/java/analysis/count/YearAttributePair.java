@@ -48,12 +48,12 @@ public class YearAttributePair implements Writable, WritableComparable<YearAttri
 
         int result = this.year.compareTo(o.year);
 
-        if(result != 0)
+        if (result != 0)
             return result;
 
-        if(this.attribute.toString().equals("*"))
+        if (this.attribute.toString().equals("*"))
             return -1;
-        else if(o.attribute.toString().equals("*"))
+        else if (o.attribute.toString().equals("*"))
             return 1;
 
         return this.attribute.compareTo(o.attribute);
@@ -69,7 +69,7 @@ public class YearAttributePair implements Writable, WritableComparable<YearAttri
 
         YearAttributePair pair = (YearAttributePair) o;
 
-        if (attribute != null ? ! attribute.equals(pair.attribute) : pair.attribute != null)
+        if (attribute != null ? !attribute.equals(pair.attribute) : pair.attribute != null)
             return false;
 
         if (year != null ? !year.equals(pair.year) : pair.year != null)

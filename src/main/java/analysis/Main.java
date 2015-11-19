@@ -1,13 +1,13 @@
 package analysis;
 
+import analysis.ResolvedRate.ResolvedRate;
+import analysis.count.CountAttribute;
+import analysis.countByHour.IncidencePerHour;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
-
-import analysis.count.CountAttribute;
-import analysis.countByHour.IncidencePerHour;
 
 /**
  * This is the entrance class of statistics analysis programs
@@ -41,6 +41,10 @@ public class Main extends Configured implements Tool {
 
         // Count by Hour
         Job countHourJob = new IncidencePerHour(conf, input, output + "/output_hour").getJob();
-        return countHourJob.waitForCompletion(true) ? 0 : 1;
+        countHourJob.waitForCompletion(true);
+
+        // Resolved rate
+        Job resolvedRateJob = new ResolvedRate(conf, input, output + "/output_resolved").getJob();
+        return resolvedRateJob.waitForCompletion(true) ? 0 : 1;
     }
 }

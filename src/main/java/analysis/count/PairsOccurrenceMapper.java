@@ -1,17 +1,15 @@
 package analysis.count;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
+import analysis.Constants;
+import com.opencsv.CSVParser;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-import com.opencsv.CSVParser;
-
-import analysis.Constants;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Count (Year, Attribute) pairs occurrence using Order Inversion algorithm.
