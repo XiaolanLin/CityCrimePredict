@@ -13,27 +13,27 @@ import java.io.IOException;
 /**
  * Created by Xiaolan Lin on 11/19/15.
  */
-public class InstanceByHourJob {
+public class IncidencePerHour {
 
     private Configuration conf;
     private Job job;
     private String intput;
     private String output;
 
-    public InstanceByHourJob(String input, String output) throws IOException {
+    public IncidencePerHour(String input, String output) throws IOException {
         this.conf = new Configuration();
         this.job = Job.getInstance(conf);
         this.intput = input;
         this.output = output;
 
         job.setJobName("Count Most Common Time");
-        job.setMapperClass(InstanceByHourMapper.class);
-        job.setReducerClass(InstanceByHourReducer.class);
+        job.setMapperClass(IncidencePerHourMapper.class);
+        job.setReducerClass(IncidencePerHourReducer.class);
         job.setMapOutputKeyClass(IntWritable.class);
         job.setMapOutputValueClass(LongWritable.class);
         job.setOutputKeyClass(IntWritable.class);
         job.setOutputValueClass(LongWritable.class);
-        job.setCombinerClass(InstanceByHourReducer.class);
+        job.setCombinerClass(IncidencePerHourReducer.class);
 
         FileInputFormat.addInputPath(job, new Path(input));
         FileOutputFormat.setOutputPath(job, new Path(output));

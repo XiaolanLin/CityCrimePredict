@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by Xiaolan Lin on 11/18/15.
  */
-public class InstanceByHourReducer extends Reducer<IntWritable, LongWritable, IntWritable, LongWritable> {
+public class IncidencePerHourReducer extends Reducer<IntWritable, LongWritable, IntWritable, LongWritable> {
 
     @Override
     protected void reduce(IntWritable key, Iterable<LongWritable> values, Context context) throws IOException, InterruptedException {

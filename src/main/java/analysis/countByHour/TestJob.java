@@ -8,7 +8,7 @@ import java.io.IOException;
 public class TestJob {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-        InstanceByHourJob job = new InstanceByHourJob(args[0], args[1]);
+        IncidencePerHour job = new IncidencePerHour(args[0], args[1]);
         job.run();
     }
 }

@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by Xiaolan Lin on 11/18/15.
  */
-public class InstanceByHourMapper extends Mapper<LongWritable, Text, IntWritable, LongWritable> {
+public class IncidencePerHourMapper extends Mapper<LongWritable, Text, IntWritable, LongWritable> {
 
     private CSVParser parser;
 
