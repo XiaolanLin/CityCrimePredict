@@ -22,7 +22,6 @@ public class Main extends Configured implements Tool {
         ToolRunner.run(new Configuration(), new Main(), args);
     }
 
-    @Override
     public int run(String[] args) throws Exception {
         Configuration conf = getConf();
         String input = args[0];

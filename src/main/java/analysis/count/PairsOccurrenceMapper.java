@@ -53,7 +53,7 @@ public class PairsOccurrenceMapper extends Mapper<LongWritable, Text, YearAttrib
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         // Parsing CSV row
         String[] tokens = this.parser.parseLine(value.toString());
-        if (!tokens[0].equals("IncidntNum")) {
+        if (!tokens[Constants.INDEX_INCIDENT_NUM].equals("IncidntNum")) {
             String date[] = tokens[Constants.INDEX_DATE].split("/");
             String attr = tokens[attrIndex];
             int year = Integer.parseInt(date[2]);
