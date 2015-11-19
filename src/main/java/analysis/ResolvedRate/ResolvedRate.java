@@ -1,8 +1,6 @@
-package ResolvedRateChange;
+package analysis.resolvedRate;
 
-import java.io.IOException;
-import java.io.StringReader;
-
+import com.opencsv.CSVReader;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -13,7 +11,8 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import com.opencsv.CSVReader;
+import java.io.IOException;
+import java.io.StringReader;
 
 public class ResolvedRate {
 	public static class DistrictPartitioner 
