@@ -1,4 +1,4 @@
-package analysis.resolvedRate;
+package analysis.ResolvedRate;
 
 import com.opencsv.CSVReader;
 import org.apache.hadoop.conf.Configuration;
