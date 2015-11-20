@@ -21,6 +21,7 @@ public class IncidencePerHour {
         this.job = Job.getInstance(conf);
 
         job.setJobName("Count Most Common Time");
+        job.setJarByClass(IncidencePerHour.class);
         job.setMapperClass(IncidencePerHourMapper.class);
         job.setReducerClass(IncidencePerHourReducer.class);
         job.setMapOutputKeyClass(IntWritable.class);

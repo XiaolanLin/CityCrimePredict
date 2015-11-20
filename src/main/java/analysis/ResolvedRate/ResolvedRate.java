@@ -17,6 +17,7 @@ public class ResolvedRate {
         this.job = Job.getInstance(conf);
 
         job.setJobName("Incidents Resolved Rate");
+        job.setJarByClass(ResolvedRate.class);
         job.setMapperClass(ResolvedRateMapper.class);
         job.setReducerClass(ResolvedRateReducer.class);
         job.setNumReduceTasks(10);
