@@ -1,7 +1,6 @@
 package analysis.count;
 
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
@@ -34,17 +33,11 @@ public class PairsOccurrenceReducer extends Reducer<YearAttributePair, IntWritab
                 totalCount.set(0);
                 totalCount.set(getTotalCount(values));
             }
+            context.write(key, totalCount);
         } else {
             int count = getTotalCount(values);
             context.write(key, new IntWritable(count));
         }
-    }
-
-    @Override
-    protected void cleanup(Context context) throws IOException, InterruptedException {
-        // Emit total count
-        context.write(new YearAttributePair(currentYear, new Text("*")), totalCount);
-        super.cleanup(context);
     }
 
     private int getTotalCount(Iterable<IntWritable> values) {
