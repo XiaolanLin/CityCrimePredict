@@ -51,5 +51,26 @@ else:
 # Convert data to Pandas data frame
 df = pd.DataFrame(data, index=years)
 
-df.plot(kind='bar', stacked=True)
+# Generate and refine palettes of optimally distinct colors.
+# http://tools.medialab.sciences-po.fr/iwanthue/
+colors = ['#563449', '#96CF41', '#82BCBF', '#C253B9', '#CA9944', '#C04743',
+          '#535E36', '#7176BF', '#CA9AA2', '#86CD88']
+
+plt.figure()
+
+ax = df.plot(kind='bar',
+             stacked=True,
+             color=colors,
+             title='Count of Inicidents for each PdDistrict')
+
+# Set label for y axis
+ax.set_ylabel('Count')
+
+# Shrink current axis by 25%
+box = ax.get_position()
+ax.set_position([box.x0, box.y0, box.width * 0.75, box.height])
+
+# Put a legend to the right of the current axis
+ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+
 plt.show()
