@@ -22,7 +22,7 @@ for key in hourly_data:
 
 df = pandas.DataFrame(yaxis, index = xaxis)
 
-df.plot(kind='bar', stacked=False)
+df.plot(kind='bar', stacked=False, legend=False)
 pyplot.show()
 
 
