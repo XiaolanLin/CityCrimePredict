@@ -24,7 +24,7 @@ for key in year_data:
 
 df = pandas.DataFrame(y_rate, index = x_year, columns = [pd_district])
 
-plot = df.plot(kind='bar', stacked=True)
+plot = df.plot(stacked=True)
 plot.set_ylim(0,1)
 
 pyplot.show()
