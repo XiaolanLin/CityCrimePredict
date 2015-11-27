@@ -3,6 +3,7 @@ package analysis;
 import analysis.ResolvedRate.ResolvedRate;
 import analysis.count.CountAttribute;
 import analysis.countByHour.IncidencePerHour;
+import analysis.countByMonth.IncidencePerMonth;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.mapreduce.Job;
@@ -42,6 +43,10 @@ public class Main extends Configured implements Tool {
         // Count by Hour
         Job countHourJob = new IncidencePerHour(conf, input, output + "/output_hour").getJob();
         countHourJob.waitForCompletion(true);
+
+        //Count by Month
+        Job countMonthJob = new IncidencePerMonth(conf, input, output + "/output_month").getJob();
+        countMonthJob.waitForCompletion(true);
 
         // Resolved rate
         Job resolvedRateJob = new ResolvedRate(conf, input, output + "/output_resolved").getJob();
