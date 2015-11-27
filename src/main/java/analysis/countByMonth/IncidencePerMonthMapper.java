@@ -27,9 +27,9 @@ public class IncidencePerMonthMapper extends Mapper<LongWritable, Text, IntWrita
         String[] tokens = this.parser.parseLine(value.toString());
         if (!tokens[0].equals("IncidntNum")) {
             String[] dateSplit = tokens[Constants.INDEX_DATE].split("/");
-            int year  = Integer.parseInt(dateSplit[2]);
+            int year = Integer.parseInt(dateSplit[2]);
             int month = Integer.parseInt(dateSplit[0]);
-            int newKey = year*100 + month;
+            int newKey = year * 100 + month;
             context.write(new IntWritable(newKey), one);
             context.write(new IntWritable(year), one);
         }
