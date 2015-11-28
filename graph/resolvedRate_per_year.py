@@ -4,27 +4,40 @@ import sys
 import matplotlib.pyplot as pyplot
 import pandas as pandas
 
-y_rate= list()
 
 year_data = dict()
 
-x_year = list()
+pdDistricts = dict()
 
-# cat (each output file)  | sort | python resolvedRate_per_year.py
+dfs = dict()
+
+district_List = ['BAYVIEW', 'CENTRAL', 'INGLESIDE', 'MISSION', 'NORTHERN', 'PARK', 'RICHMOND', 'SOUTHERN', 'TARAVAL', 'TENDERLOIN']
+
+# cat output_resolved/part-r-0000* | sort | python resolvedRate_per_year.py
 
 for line in sys.stdin:
     splits = line.split(',')
     second_splits = splits[1].split()
     pd_district = second_splits[0]
-    year_data[int(splits[0])] = float(second_splits[1])
+    year_data[(pd_district, int(splits[0]))] = float(second_splits[1])
 
-for key in year_data:
-    x_year.append(key)
-    y_rate.append(year_data[key])
+for pd in district_List:
+	pd_year_data = dict()
+	for key in year_data:
+		if key[0] == pd:
+			pd_year_data[key[1]] = year_data[key]
+	pdDistricts[pd] = pd_year_data
 
-df = pandas.DataFrame(y_rate, index = x_year, columns = [pd_district])
-
-plot = df.plot(stacked=True)
-plot.set_ylim(0,1)
-
+fig, axes = pyplot.subplots(2, 5, sharey=True, figsize=(25,6))
+for i, pd in enumerate(district_List):
+	y_rate = list()
+	x_year = list()
+	for key in pdDistricts[pd]:
+		x_year.append(key)
+		y_rate.append(pdDistricts[pd][key])
+	axes[i/5][i%5].plot(x_year, y_rate)
+	axes[i/5][i%5].set_title(pd)
+	
+pyplot.tight_layout()
 pyplot.show()
+
