@@ -12,3 +12,11 @@ target/*
 
 # Ignore run.sh cause it contains sensitive data
 run.sh
+
+# Output
+output/
+
+# Eclipse settings
+.classpath
+.project
+.settings/

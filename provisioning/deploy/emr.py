@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+import sys
+
 import boto3
 
 from utils import get_env_value
@@ -74,14 +78,23 @@ def create_custom_jar_step(step_name, jar_name, args=[], bucket_name=None):
             'Args': args
         }
     }
+    print('Created custom jar step: %s' % jar_name)
     return step
 
 
-def main():
+def run(jar_name):
+    bucket_name = get_env_value('BUCKET')
+    input_path = 's3://%s/project/data' % bucket_name
+    output_path = 's3://%s/project/output' % bucket_name
     # Implement main function by adding custom jar steps
-    step1 = create_custom_jar_step('TEST', 'test.jar')
-    create_custom_jar_step('EMRTEST', steps=[step1, ])
+    step1 = create_custom_jar_step('StatisticsAnalysis',
+                                   jar_name,
+                                   args=[input_path, output_path],
+                                   bucket_name=bucket_name)
+    create_job('Hadoop-Crime-Analysis', steps=[step1, ])
+    print('\nJob Hadoop-Crime-Analysis is running.\n' +
+          'Go to AWS Console to check its status.')
 
 
 if __name__ == '__main__':
-    main()
+    run(sys.argv[1])

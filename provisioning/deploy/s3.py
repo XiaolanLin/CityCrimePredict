@@ -26,6 +26,7 @@ def upload_jar(jar_path):
     key = os.path.join('project/jars', os.path.basename(jar.name))
     print('Uploading %s to s3://%s/%s' % (jar.name, bucket_name, key))
     s3.Bucket(bucket_name).put_object(Key=key, Body=jar)
+    print('Uploading completed.')
 
 
 if __name__ == '__main__':

@@ -45,5 +45,13 @@ python provisioning/deploy/s3.py JAR_PATH
 You may have to modify EMR cluster configuration and implement `main` function in `emr.py`.
 
 ```Shell
-python provisioning/deploy/emr.py
+python provisioning/deploy/emr.py JAR_NAME
+```
+
+### Download Hadoop Output
+You can use [s3cmd](http://s3tools.org/s3cmd) to download output files.
+
+```Shell
+s3cmd sync --access_key=$AWS_ACCESS_KEY --secret_key=$AWS_SECRET_KEY \
+--exclude '_SUCCESS' s3://$BUCKET/project/output/ output
 ```
