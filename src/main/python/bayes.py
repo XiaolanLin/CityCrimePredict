@@ -208,14 +208,14 @@ if __name__ == "__main__":
     sc = SparkContext(appName="PythonNaiveBayesExample")
 
     # training test mannually split
-    training = sc.textFile(dataset).map(parseLine)
+    # training = sc.textFile(dataset).map(parseLine)
 
-    test = sc.textFile(testDataSet).map(parseLine)
+    # test = sc.textFile(testDataSet).map(parseLine)
 
     # random split
-    # data = sc.textFile(dataset).map(parseLine)
+    data = sc.textFile('/Users/yummin/Downloads/sfpd-incident-2013-partial.csv').map(parseLine)
 
-    # training, test = data.randomSplit([0.92, 0.08], seed=0)
+    training, test = data.randomSplit([0.8, 0.2], seed=0)
 
     model = NaiveBayes.train(training, 1.0)
 
