@@ -37,6 +37,7 @@ for i, pd in enumerate(district_List):
 		y_rate.append(pdDistricts[pd][key])
 	axes[i/5][i%5].plot(x_year, y_rate)
 	axes[i/5][i%5].set_title(pd)
+	pyplot.setp(axes[i/5][i%5].get_xticklabels(), rotation=90)
 	
 pyplot.tight_layout()
 pyplot.show()
