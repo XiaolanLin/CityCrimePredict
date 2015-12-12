@@ -20,8 +20,13 @@ def parseLine(line):
     hour = int(parts[INDEX_TIME].split(':')[0])
     day_of_month = int(parts[INDEX_DATE].split('/')[1])
     pd = PdDistrict[parts[INDEX_PD_DISTRICT]]
+    # Spark only supports non-negetive value
+    longitude = round(abs(float(parts[INDEX_LONGITUDE])), 3)
+    latitude = round(float(parts[INDEX_LATITUDE]), 3)
 
-    features = Vectors.dense([day, month, hour, day_of_month, pd])
+    features = Vectors.dense([day, month, hour, day_of_month, pd, longitude,
+                              latitude])
+
     return LabeledPoint(label, features)
 
 

@@ -23,8 +23,8 @@ def parseLine(line):
     day_of_month = int(parts[INDEX_DATE].split('/')[1]) - 1
     pd = PdDistrict[parts[INDEX_PD_DISTRICT]]
     # continuous features
-    latitude = abs(float(parts[9]))
-    longitude = float(parts[10])
+    latitude = float(parts[INDEX_LATITUDE])
+    longitude = abs(float(parts[INDEX_LONGITUDE]))
 
     features = Vectors.dense([day, month, hour, day_of_month, pd, latitude,
                               longitude])

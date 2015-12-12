@@ -9,6 +9,9 @@ INDEX_DATE = 4
 INDEX_TIME = 5
 INDEX_PD_DISTRICT = 6
 INDEX_RESOLUTION = 7
+INDEX_ADDRESS = 8
+INDEX_LONGITUDE = 9
+INDEX_LATITUDE = 10
 
 # Naive bayes model in Spark mllib require float for each feature and label.
 # Define dictionary to map features/label to float numbers
