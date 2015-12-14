@@ -24,8 +24,8 @@ for key in xaxis_data:
 
 df = pandas.DataFrame(yaxis, index = xaxis)
 
-df.plot(kind='bar', stacked=True, color = colors, title='Count of Incidents for each hour', legend=False)
-pyplot.xlabel('Hour')
+df.plot(kind='bar', stacked=True, color = colors, title='Count of Incidents for each year', legend=False)
+pyplot.xlabel('Year')
 pyplot.ylabel('Count')
 pyplot.show()
 

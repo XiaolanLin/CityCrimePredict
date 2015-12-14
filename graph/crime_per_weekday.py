@@ -8,6 +8,8 @@ yaxis = list()
 
 xaxis_data = dict()
 
+weekday = list()
+
 xaxis = list()
 
 colors = ['#365C96']
@@ -15,17 +17,19 @@ colors = ['#365C96']
 # cat [file] | sort | python crime_per_hour_count.py
 
 for line in sys.stdin:
-	splits = map(int, line.split())
-	xaxis_data[splits[0]] = splits[1]
+	splits = line.split()
+	print splits
+	xaxis_data[splits[1]] = int(splits[2])
+	weekday.append(splits[1])
 
-for key in xaxis_data:
+for key in weekday:
 	xaxis.append(key)
 	yaxis.append(xaxis_data[key])
 
 df = pandas.DataFrame(yaxis, index = xaxis)
 
-df.plot(kind='bar', stacked=True, color = colors, title='Count of Incidents for each hour', legend=False)
-pyplot.xlabel('Hour')
+df.plot(kind='bar', stacked=True, color = colors, title='Count of Incidents for each weekday', legend=False)
+pyplot.xlabel('Weekday')
 pyplot.ylabel('Count')
 pyplot.show()
 
