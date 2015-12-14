@@ -50,7 +50,7 @@ if __name__ == '__main__':
     # Train a DecisionTree model.
     # Empty categoricalFeaturesInfo indicates all features are continuous.
     model = DecisionTree.trainClassifier(train,
-                                         numClasses=6,
+                                         numClasses=len(Category),
                                          categoricalFeaturesInfo={0: 7,
                                                                   1: 12,
                                                                   2: 24,
